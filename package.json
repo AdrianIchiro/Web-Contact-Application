@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/AdrianIchiro/Web-Contact-Application/issues"
   },
-  "homepage": "https://github.com/AdrianIchiro/Web-Contact-Application#readme"
+  "homepage": "https://github.com/AdrianIchiro/Web-Contact-Application#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
