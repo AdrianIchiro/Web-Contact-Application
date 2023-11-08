@@ -11,9 +11,17 @@ app.use(express.static('./public'))
 
 
 app.get('/', (req, res) => {
+    const contact = {
+        nama: 'adrian',
+        noHp: '081383838383',
+        email: 'adrian@gmail.com',
+        info: 'orang jakarta'
+    }
     res.render('home', {
         title: 'Home',
-        layout: 'layouts/main'
+        contact,
+        layout: 'layouts/main',
+        
     })
 })
 
