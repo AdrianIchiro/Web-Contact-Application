@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 const Contacts = mongoose.model('Contacts', {
     nama: {
         type: String,

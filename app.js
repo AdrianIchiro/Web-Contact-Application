@@ -19,11 +19,11 @@ app.get('/', async (req, res) => {
     //     email: 'adrian@gmail.com',
     //     info: 'orang jakarta'
     // }
-    const Contacs = await Contacts.find()
+    const Contacts = await Contacts.find()
     res.render('home', {
         title: 'Home',
         layout: 'layouts/main',
-        Contacts,
+        Contatcs,
     })
 })
 
