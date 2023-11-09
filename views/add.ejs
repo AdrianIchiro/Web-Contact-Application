@@ -1,4 +1,13 @@
 <h1>Add Data</h1>
+<% if (typeof error != 'undefined') { %>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <% error.forEach(err => { %>
+                <li><%= err.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %> 
 <form action="/add" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nama</label>

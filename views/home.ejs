@@ -1,4 +1,8 @@
-
+<% if (flash != '') { %>
+    <div class="alert alert-secondary" role="alert">
+        <%= flash %>
+    </div>
+<% } %>
 <div class="row">
     <% Contact.forEach(contact => { %>
         <div class="col-md-4">
