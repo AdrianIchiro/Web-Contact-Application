@@ -19,13 +19,21 @@ app.get('/', async (req, res) => {
     //     email: 'adrian@gmail.com',
     //     info: 'orang jakarta'
     // }
-    const Contacts = await Contacts.find()
+    const Contact = await Contacts.find()
     res.render('home', {
         title: 'Home',
         layout: 'layouts/main',
-        Contatcs,
+        Contact,
     })
 })
+
+app.get('/add', (req, res) => {
+    res.render('add', {
+        title: 'Add',
+        layout: 'layouts/main',
+    })
+})
+
 
 app.listen(port, () => {
     console.log('listen')
