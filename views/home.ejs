@@ -24,10 +24,11 @@
                     <li class="list-group-item"><%= contact.email %></li>
                 </ul>
                 <div class="card-body">
-                    <form method="POST" action="/delete?_method=DELETE">
+                    <form method="POST" action="/delete?_method=DELETE" class="d-inline">
                         <input type="hidden" name="nama" value="<%= contact.nama %>">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin mau menghapus?')">Hapus</button>
                     </form>
+                    <a href="/update/<%= contact.nama %>"><button type="button" class="btn btn-warning">Edit</button></a>
                 </div>
             </div>
         </div>

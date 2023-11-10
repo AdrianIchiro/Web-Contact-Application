@@ -89,6 +89,15 @@ app.delete('/delete', (req, res) => {
     })
 })
 
+app.get('/update:nama', (req, res) => {
+    const contact = Contacts.findOne({nama: req.param.nama})
+    res.render('update', {
+        title: 'add',
+        layout: 'layouts/main',
+        contact,
+    })
+})
+
 app.listen(port, () => {
     console.log('listen')
 })
