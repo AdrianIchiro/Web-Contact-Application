@@ -6,6 +6,8 @@ const {validationResult, body, check, cookie} = require('express-validator')
 const flash = require('connect-flash')
 const session = require('express-session')
 const cookies = require('cookie-parser')
+var methodOverride = require('method-override')
+
 
 const app = express()
 const port = 3000
@@ -15,7 +17,7 @@ app.set('view engine', 'ejs')
 app.use(expressLayout)
 app.use(express.static('./public'))
 app.use(express.urlencoded({extended: true}))
-
+app.use(methodOverride('_method'))
 
 
 app.use(cookies('secret'))
@@ -77,8 +79,13 @@ app.post('/add', [
     }
 })
 
-//  
-// ],
+app.delete('/delete', (req, res) => {
+    Contacts.deleteOne({nama: req.body.nama}).then((value) => {
+        req.flash('delete', 'data berhasil di hapus')
+        res.redirect('/')
+    })
+    
+})
 
 app.listen(port, () => {
     console.log('listen')
