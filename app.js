@@ -44,6 +44,7 @@ app.get('/', async (req, res) => {
         title: 'Home',
         layout: 'layouts/main',
         flash: req.flash('success'),
+        status: req.flash('status'),
         Contact,
     })
 })
@@ -75,16 +76,17 @@ app.post('/add', [
     } else {
         Contacts.insertMany(req.body)
         req.flash('success', 'data berhasil ditambahkan')
+        req.flash('status', 'add')
         res.redirect('/')
     }
 })
 
 app.delete('/delete', (req, res) => {
     Contacts.deleteOne({nama: req.body.nama}).then((value) => {
-        req.flash('delete', 'data berhasil di hapus')
+        req.flash('success', 'data berhasil di hapus')
+        req.flash('status', 'delete')
         res.redirect('/')
     })
-    
 })
 
 app.listen(port, () => {

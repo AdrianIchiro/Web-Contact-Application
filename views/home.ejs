@@ -1,7 +1,15 @@
 <% if (flash != '') { %>
-    <div class="alert alert-secondary" role="alert">
-        <%= flash %>
-    </div>
+    <% if (status == 'add') { %>
+        <div class="alert alert-secondary" role="alert">
+            <%= flash %>
+        </div>
+    <% } else {%>
+        <div class="alert alert-danger" role="alert">
+            <%= flash %>
+        </div>
+    
+    <% } %>
+    
 <% } %>
 <div class="row">
     <% Contact.forEach(contact => { %>
