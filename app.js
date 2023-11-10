@@ -89,14 +89,46 @@ app.delete('/delete', (req, res) => {
     })
 })
 
-app.get('/update:nama', (req, res) => {
-    const contact = Contacts.findOne({nama: req.param.nama})
+app.put('/update', [
+    body('nama').custom(async (value, {req}) => {
+        const duplicate = await Contacts.findOne({nama: value})
+        if (value !== req.body.oldnama && duplicate) {
+            throw new Error('nama sudah digunakan')
+        }
+        return true
+    }),
+    check('noHp', 'nomor tidak valid').isMobilePhone('id-ID'),
+    check('email', 'email tidak valid').isEmail()
+], (req, res) => {
+    const value = validationResult(req)
+    if (!value.isEmpty()) {
+        res.render('update', {
+            title: 'add',
+            layout: 'layouts/main',
+            contact: req.body,
+            error: value.array()
+        })
+    } else {
+        Contacts.updateOne({_id: req.body._id}, {
+            $set: {
+                nama: req.body.nama,
+                noHp: req.body.noHp,
+                email: req.body.email
+            }
+        }).then((result) => res.redirect('/'))
+    }
+})
+
+app.get('/update/:nama', async (req, res) => {
+    const contact = await Contacts.findOne({nama: req.params.nama})
     res.render('update', {
         title: 'add',
         layout: 'layouts/main',
         contact,
     })
 })
+
+
 
 app.listen(port, () => {
     console.log('listen')

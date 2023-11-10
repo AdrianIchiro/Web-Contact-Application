@@ -1,4 +1,16 @@
+<h1>Update data</h1>
+<% if (typeof error != 'undefined') { %>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <% error.forEach(err => { %>
+                <li><%= err.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %> 
 <form action="/update?_method=PUT" method="post">
+  <input type="hidden" name="_id" value="<%= contact._id %>">
+  <input type="hidden" name="oldnama" value="<%= contact.nama || contact.oldnama %>">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nama</label>
     <input name="nama" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<%= contact.nama %>">
